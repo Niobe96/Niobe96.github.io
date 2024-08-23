@@ -512,3 +512,48 @@ productsGrid.addEventListener('touchmove', function(e) {
     const moveY = startY - touchY;
     productsGrid.scrollTop = startScrollTop + moveY;
 });
+// 매일 오후 11시에 엑셀 파일로 저장하는 기능 추가
+function autoSaveExcelAt11PM() {
+    setInterval(() => {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+
+        // 오후 11시 00분에 실행
+        if (currentHour === 23 && currentMinute === 0) {
+            const today = now.toISOString().split('T')[0];
+            exportToExcelForDay(today);
+        }
+    }, 60000); // 1분 간격으로 현재 시간 확인
+}
+
+// 특정 날짜의 판매 데이터를 엑셀로 내보내는 함수
+function exportToExcelForDay(date) {
+    const salesDetails = salesHistory[date];
+    if (!salesDetails) return;
+
+    const worksheetData = [['Time', 'Item', 'Quantity', 'Price']];
+    salesDetails.forEach(sale => {
+        worksheetData.push([sale.time, sale.item, sale.quantity, sale.price]);
+    });
+
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, `${date} Sales`);
+
+    XLSX.writeFile(workbook, `SalesData_${date}.xlsx`);
+}
+
+// 페이지 로드 시 자동 저장 기능 시작
+document.addEventListener('DOMContentLoaded', () => {
+    autoSaveExcelAt11PM();
+});
+
+// 기존 페이지 로드 시 주문 데이터 복원 코드
+document.addEventListener('DOMContentLoaded', () => {
+    const savedOrder = localStorage.getItem('currentOrder');
+    if (savedOrder) {
+        currentOrder = JSON.parse(savedOrder);
+        updateOrderSummary();
+    }
+});
