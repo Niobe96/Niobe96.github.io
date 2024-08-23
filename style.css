@@ -1,0 +1,316 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar, .order-summary {
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 20%;
+}
+
+.order-summary {
+    width: 20%;
+}
+
+.main-content {
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: 150px;
+}
+
+.product-item h3 {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.product-item p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.order-summary h2, .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-summary ul {
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.order-summary ul li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.order-summary button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.order-summary button:hover {
+    background-color: #218838;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
+}
+
+.admin-access {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.admin-page {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    z-index: 100;
+    display: flex;
+}
+
+.admin-sidebar {
+    width: 20%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.scrollable {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.admin-content {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.admin-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-content table th, .admin-content table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.admin-content table th {
+    background-color: #f4f4f4;
+}
+
+.total-sales {
+    font-size: 1.2em;
+    text-align: right;
+    margin: 20px 0;
+}
+
+.return-to-sales-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.return-to-sales-button:hover {
+    background-color: #0056b3;
+}
+
+.month-section h3 {
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.date-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.date-list button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.date-list button:hover {
+    background-color: #ddd;
+}
+#clearOrderButton {
+    margin-top: 10px; /* 주문 버튼과 초기화 버튼 사이에 간격 추가 */
+}
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    height: 500px; /* 필요에 따라 이 값을 조정 */
+    overflow-y: auto; /* 스크롤 가능하도록 설정 */
+}
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.quantity-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background-color: #bbb;
+}
+.products-grid::-webkit-scrollbar {
+    width: 10px;
+}
+
+.products-grid::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 12px;
+}
+
+.products-grid::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    height: 500px; /* 필요에 따라 조정 */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* 터치 스크롤 부드럽게 */
+}
+.sidebar ul {
+    list-style-type: none; /* 글머리 기호 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+
+.sidebar ul li {
+    margin-bottom: 10px; /* 각 버튼 간의 간격 */
+}
+
+.sidebar ul li button {
+    padding: 20px 30px; /* 버튼의 크기 조정 */
+    font-size: 1.5em; /* 폰트 크기 증가 */
+    width: 100%; /* 버튼이 사이드바의 너비를 가득 채우도록 설정 */
+    background-color: #28a745; /* 회색 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 클릭 가능한 커서 */
+    margin-bottom: 10px; /* 버튼 사이의 간격 */
+    border-radius: 5px; /* 버튼에 약간의 곡률 추가 */
+}
+
+.sidebar ul li button:hover {
+    background-color: #5a6268; /* 호버 시 약간 어두운 회색 */
+}

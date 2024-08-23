@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk App with Admin Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>종류</h2>
+            <ul>
+                <li><button onclick="showCategory('drinks')">음료류</button></li>
+                <li><button onclick="showCategory('snacks')">과자류</button></li>
+                <li><button onclick="showCategory('desserts')">간식류</button></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div id="productsGrid" class="products-grid">
+                <!-- 상품 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+        </div>
+        <div class="order-summary">
+            <h2>장바구니</h2>
+            <ul id="orderList">
+                <!-- 선택한 상품이 여기에 동적으로 추가됩니다 -->
+            </ul>
+            <div class="total">
+                합계 : <span id="totalPrice">0</span> 원
+            </div>
+            <button id="orderButton">주문</button>
+            <!-- 추가된 초기화 버튼 -->
+            <button id="clearOrderButton">초기화</button>
+        </div>
+
+    <!-- 관리자 페이지 접근을 위한 터치 영역 -->
+    <div id="adminAccess" class="admin-access"></div>
+
+    <!-- 관리자 로그인 팝업 -->
+    <div id="adminLoginPopup" class="popup">
+        <div class="popup-content">
+            <h3>비밀번호를 입력하세요</h3>
+            <input type="password" id="adminPassword" placeholder="비밀번호">
+            <button id="adminLoginButton">로그인</button>
+            <button id="adminCancelButton">취소</button>
+        </div>
+    </div>
+
+    <!-- 주문 확인 팝업 -->
+    <div id="orderPopup" class="popup">
+        <div class="popup-content">
+            <h3>총 합계 금액: <span id="popupTotalPrice">0</span> 원</h3>
+            <button id="confirmOrderButton">확인</button>
+            <button id="cancelOrderButton">취소</button>
+        </div>
+    </div>
+
+    <!-- 관리자 페이지 -->
+    <div id="adminPage" class="admin-page">
+        <div class="admin-sidebar">
+            <h2>매출 현황</h2>
+            <div id="scrollableDateList" class="scrollable">
+            </div>
+        </div>
+        <div class="admin-content">
+            <h2>매출 내역 (<span id="salesDate"></span>)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>구매 시간</th>
+                        <th>품목</th>
+                        <th>수량</th>
+                        <th>금액</th>
+                    </tr>
+                </thead>
+                <tbody id="salesDetails">
+                    <!-- 매출 내역이 여기에 동적으로 추가됩니다 -->
+                </tbody>
+            </table>
+            <h2>총 판매 현황</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>품목</th>
+                        <th id="summary_monster">몬스터</th>
+                        <th id="summary_zombie">좀비</th>
+                        <th id="summary_pocari">포카리스웨트</th>
+                        <th id="summary_powerade">파워에이드</th>
+                        <th id="summary_zeroCola">제로콜라</th>
+                        <th id="summary_melonSoda">메론소다</th>
+                        <th id="summary_cocopalm">코코팜</th>
+                        <th id="summary_homerunBall">홈런볼</th>
+                        <th id="summary_kinder">킨더 초콜렛</th>
+                        <th id="summary_kokakorn">꼬깔콘</th>
+                        <th id="summary_kancho">칸쵸</th>
+                        <th id="summary_jjolbyeong">쫄병스낵</th>
+                        <th id="summary_chocoBread">초코빵</th>
+                        <th id="summary_hersheyCookie">허쉬쿠키</th>
+                        <th id="summary_gomiball">꼬미볼</th>
+                        <th id="summary_mentos">멘토스</th>
+                        <th id="summary_mongshell">몽쉘, 카스타드, 후레쉬베리</th>
+                        <th id="summary_whiteHeim">화이트하임, 초코쿠키</th>
+                        <th id="summary_ramen">컵라면</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="itemSalesSummary">
+                        <!-- 각 품목의 팔린 개수 -->
+                        <td>판매 개수</td>
+                        <td id="sales_monster">0</td>
+                        <td id="sales_zombie">0</td>
+                        <td id="sales_pocari">0</td>
+                        <td id="sales_powerade">0</td>
+                        <td id="sales_zeroCola">0</td>
+                        <td id="sales_melonSoda">0</td>
+                        <td id="sales_cocopalm">0</td>
+                        <td id="sales_homerunBall">0</td>
+                        <td id="sales_kinder">0</td>
+                        <td id="sales_kokakorn">0</td>
+                        <td id="sales_kancho">0</td>
+                        <td id="sales_jjolbyeong">0</td>
+                        <td id="sales_chocoBread">0</td>
+                        <td id="sales_hersheyCookie">0</td>
+                        <td id="sales_gomiball">0</td>
+                        <td id="sales_mentos">0</td>
+                        <td id="sales_mongshell">0</td>
+                        <td id="sales_whiteHeim">0</td>
+                        <td id="sales_ramen">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total-sales">
+                총 매출 금액: <span id="totalSalesAmount">0</span> 원
+            </div>
+        </div>
+
+        <!-- 판매 화면으로 돌아가기 버튼 -->
+        <button id="returnToSalesButton" class="return-to-sales-button">판매 화면으로 돌아가기</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
