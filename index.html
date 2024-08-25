@@ -69,6 +69,12 @@ if ('serviceWorker' in navigator) {
             <button id="cancelOrderButton">취소</button>
         </div>
     </div>
+        
+<div id="confirmationPopup" style="display: none; text-align: center;">
+    <img id="popupImage" src="your-image.png" alt="Popup Image" style="width: 100px; height: 100px;"/>
+    <p id="popupMessage">주문이 완료되었습니다!</p>
+    <p id="countdown">15초 후에 자동으로 닫힙니다: <span id="countdownNumber">15</span></p>
+</div>
 
     <!-- 관리자 페이지 -->
     <div id="adminPage" class="admin-page">
