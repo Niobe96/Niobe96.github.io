@@ -183,7 +183,18 @@ document.getElementById('adminLoginButton').addEventListener('click', () => {
     if (inputPassword === adminPassword) {
         document.getElementById('adminLoginPopup').style.display = 'none';
         document.getElementById('adminPage').style.display = 'flex';
-        loadSalesDetails(Object.keys(salesHistory)[0]);  // 첫 번째 날짜의 매출 내역 표시
+        
+        // 오늘 날짜를 yyyy-mm-dd 형식으로 가져오기
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayDate = `${yyyy}-${mm}-${dd}`;
+        
+        // 오늘 날짜의 매출 내역이 있을 경우에만 표시
+        if (salesHistory[todayDate]) {
+            loadSalesDetails(todayDate);
+        }
     } else {
         alert('비밀번호가 틀렸습니다.');
     }
