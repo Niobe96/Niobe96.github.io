@@ -200,6 +200,31 @@ document.getElementById('orderButton').onclick = () => {
     document.getElementById('popupTotalPrice').textContent = totalPrice;
     document.getElementById('orderPopup').style.display = 'flex';
 };
+// 주문 확인 버튼 클릭 시 팝업창
+document.getElementById('confirmOrderButton').addEventListener('click', () => {
+    saveOrder(currentOrder);
+    currentOrder = [];
+    updateOrderSummary();
+    document.getElementById('orderPopup').style.display = 'none';
+
+    // 새로운 팝업을 15초 동안 표시
+    document.getElementById('confirmationPopup').style.display = 'flex';
+
+    let countdownNumber = 15;
+    const countdownElement = document.getElementById('countdownNumber');
+    countdownElement.textContent = countdownNumber;
+
+    // 카운트다운 시작
+    const countdownInterval = setInterval(() => {
+        countdownNumber--;
+        countdownElement.textContent = countdownNumber;
+
+        if (countdownNumber <= 0) {
+            clearInterval(countdownInterval);
+            document.getElementById('confirmationPopup').style.display = 'none';
+        }
+    }, 1000); // 1초 간격으로 숫자 감소
+});
 
 // 주문 확인 버튼
 document.getElementById('confirmOrderButton').addEventListener('click', () => {
