@@ -70,12 +70,12 @@ if ('serviceWorker' in navigator) {
         </div>
     </div>
 
- <!-- 주문 확인 시 QR 코드 팝업 -->
+<!-- 주문 확인 시 QR 코드 팝업 -->
 <div id="confirmationPopup" class="popup" style="display: none; text-align: center;">
-    <div class="popup-content">
-        <img id="popupImage" src="images/QRcode.png" alt="Popup Image" style="width: 100px; height: 100px;"/>
-        <p id="popupMessage">총 금액은 신한 110-519-467850(나*태)로 보내주세요!</p>
-        <p id="countdown">15초 후에 자동으로 닫힙니다: <span id="countdownNumber">15</span></p>
+    <div class="popup-content" style="width: 300px; height: 400px; padding: 20px; background-color: white; border-radius: 10px;">
+        <img id="popupImage" src="images/QRcode.png" alt="Popup Image" style="width: 200px; height: 200px; margin-bottom: 20px;"/>
+        <p id="popupMessage" style="font-size: 16px;">총 금액은 신한 110-519-467850(나*태)로 보내주세요!</p>
+        <p id="countdown" style="font-size: 14px;">15초 후에 자동으로 닫힙니다: <span id="countdownNumber">15</span></p>
     </div>
 </div>
 
