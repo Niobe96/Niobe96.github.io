@@ -194,6 +194,13 @@ document.getElementById('adminCancelButton').addEventListener('click', () => {
     document.getElementById('adminLoginPopup').style.display = 'none';
 });
 
+// 주문 버튼 클릭 시 팝업 표시
+document.getElementById('orderButton').onclick = () => {
+    const totalPrice = document.getElementById('totalPrice').textContent;
+    document.getElementById('popupTotalPrice').textContent = totalPrice;
+    document.getElementById('orderPopup').style.display = 'flex';
+};
+
 // 주문 확인 버튼
 document.getElementById('confirmOrderButton').addEventListener('click', () => {
     // 기존 주문을 저장하고 초기화
