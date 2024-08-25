@@ -196,24 +196,11 @@ document.getElementById('adminCancelButton').addEventListener('click', () => {
 
 // 주문 확인 버튼
 document.getElementById('confirmOrderButton').addEventListener('click', () => {
-    saveOrder(currentOrder);
-    currentOrder = [];
-    updateOrderSummary();
-    document.getElementById('orderPopup').style.display = 'none';
-});
-
-// 주문 취소 버튼
-document.getElementById('cancelOrderButton').addEventListener('click', () => {
-    document.getElementById('orderPopup').style.display = 'none';
-});
-
-//주문 확인 시 팝업 생성
-document.getElementById('confirmOrderButton').addEventListener('click', () => {
     // 기존 주문을 저장하고 초기화
     saveOrder(currentOrder);
     currentOrder = [];
     updateOrderSummary();
-    
+
     // 기존 주문 팝업 닫기
     document.getElementById('orderPopup').style.display = 'none';
 
@@ -236,6 +223,10 @@ document.getElementById('confirmOrderButton').addEventListener('click', () => {
     }, 1000); // 1초 간격으로 숫자 감소
 });
 
+// 주문 취소 버튼
+document.getElementById('cancelOrderButton').addEventListener('click', () => {
+    document.getElementById('orderPopup').style.display = 'none';
+});
 
 // 관리자 페이지에서 매출 내역 로드
 function loadSalesDetails(date) {
