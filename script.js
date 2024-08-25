@@ -214,7 +214,7 @@ document.getElementById('confirmOrderButton').addEventListener('click', () => {
     // 새로운 팝업을 15초 동안 표시
     document.getElementById('confirmationPopup').style.display = 'flex';
 
-    let countdownNumber = 15;
+    let countdownNumber = 10;
     const countdownElement = document.getElementById('countdownNumber');
     countdownElement.textContent = countdownNumber;
 
@@ -228,6 +228,11 @@ document.getElementById('confirmOrderButton').addEventListener('click', () => {
             document.getElementById('confirmationPopup').style.display = 'none';
         }
     }, 1000); // 1초 간격으로 숫자 감소
+});
+
+ // 확인 버튼 클릭 시 팝업창 삭제
+ document.getElementById('closePopupButton').addEventListener('click', () => {
+    document.getElementById('confirmationPopup').style.display = 'none';
 });
 
 // 주문 취소 버튼
